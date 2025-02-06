@@ -423,23 +423,16 @@ Export.image.toDrive({image: NDVImultitemporal,
   crs: 'EPSG:32616',
   maxPixels: 1e13});
   
-//======================================================14. Visualizar al mapa combinación de color verdadero B(3,2,1).===========================/
-
-var rgb_vis = {
-  bands: ['SR_B3', 'SR_B2', 'SR_B1'],
-  min: 0.0,
-  max: 0.2,
-}; 
-
-//=================================15.Añadir datos al mapa.==============================================================================/
+//=================================14.Añadir datos al mapa.==============================================================================/
 
 Map.addLayer (NDVImultitemporal.clip(ee.FeatureCollection(zonas)), {max: 1, min: 0, gamma: 1.4,}, 'NDVI multitemporal Zonas');
 Map.addLayer (NDVI1,{max: 1.0, min: 0, palette: palette}, 'NDVI_2014');
+Map.addLayer (NDVI_C1, {max:1.0, min: -1.0}, 'Umbrales_NDVI');
 Map.addLayer (Sian_Pol,{color:'yellow'}, 'RBSK');
 Map.addLayer (ZN, {color:'blue'}, 'ZN');
 Map.addLayer (ZS, {color:'cyan'}, 'ZS');
 
-//======================================16.Centrar el mapa a la capa vectorial de la RBSK (Perimetro).=========================================/
+//======================================15.Centrar el mapa a la capa vectorial de la RBSK (Perimetro).=========================================/
 Map.centerObject (Sian_Pol, 10);
 
 //*******************************************************************************************************************************************************/
