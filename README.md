@@ -17,7 +17,7 @@ Con la ejecución de este código en cada sección (01 y 02), obtendrá los umbr
 
 Resultados para el periodo 2014-2024:
 
-1. ![alt text](ZN.png)
+1. ![alt text](NDVI_ZN_2014.png)
 
 2. ![alt text](ZS.png)
  
