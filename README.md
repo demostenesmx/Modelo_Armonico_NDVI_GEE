@@ -13,7 +13,7 @@ El repostirorio se elaboró de acuerdo a los lineamientos de la [**licencia GNU 
 
 Estimaciones.
 
-Con la ejecución de este código en cada sección (01 y 02), obtendrá los umbrales, estadisticos y la estacionalidad fenológica a través del NDVI, mediante modelo ármonico para el periodo de 10 años (2014-2023), para la zona norte y sur de la RBSK.
+Con la ejecución de este código en cada sección (01 y 02), obtendrá los umbrales, estadisticos y la estacionalidad fenológica a través del NDVI, mediante modelo ármonico para el periodo de 10 años (2014-2023), para la zona norte y sur de la RBSK. Ademas podrá exportar capas raster anuales y clasificada con los umbrales propuestos por zona de estudio.
 
 Resultados para el periodo 2014-2023:
 
@@ -21,13 +21,9 @@ Resultados para el periodo 2014-2023:
 
 2. ![alt text](NDVI-ZS_2014-2023.png)
  
-3. ![alt text](NDVI_ZS_2014.png)
+3.  ![alt text](ZN.png)
 
-4. ![alt text](NDVI_ZS_2023.png)
-
-5.  ![alt text](ZN.png)
-
-6. ![alt text](ZS.png)
+4. ![alt text](ZS.png)
 
 ### Capas raster a exportar. 
 Visualización de la Reserva de la Bisofera de Sian Ka´an (RBSK), mediante NDVI aplicado a la colección L8, exhibiendo estacionalidad fenológica de las bandas de fase, amplitud, y valor de NDVImediana en GEE. Las capas raster a exportar se ubican dentro de la pestaña Tasks, para su descarga en google drive y posteriormente ser descargadas a la PC personal para su manipulación. Este código fue elaborado mendiante la plataforma GEE. 
