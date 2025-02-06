@@ -17,18 +17,14 @@ Con la ejecución de este código se obtendrán series de tiempo con valores men
 
 Resultados de la distribución de valores por mes por año para el periodo 2011-2020:
 
-1. ![alt text](https://github.com/demostenesmx/NDVI-SAVI_DCA/blob/main/NDVI-ZN_01.png)
+1. ![alt text]()
 
-2. ![alt text](https://github.com/demostenesmx/NDVI-SAVI_DCA/blob/main/NDVI-ZS.png)
-
-3. ![alt text](https://github.com/demostenesmx/NDVI-SAVI_DCA/blob/main/SAVI-ZN.png)
-
-4. ![alt text](https://github.com/demostenesmx/NDVI-SAVI_DCA/blob/main/SAVI-ZS.png)
+2. ![alt text]()
 
 ### Capas raster a exportar. 
 Visualización de la Reserva de la Bisofera de Sian Ka´an (RBSK), mediante NDVI aplicado a la colección L8, exhibiendo estacionalidad fenológica de las bandas de fase, amplitud, y valor de NDVImediana en GEE. Las capas raster a exportar se ubican dentro de la pestaña Tasks, para su descarga en google drive y posteriormente ser descargadas a la PC personal para su manipulación. Este código fue elaborado mendiante la plataforma GEE. 
 
-![alt text](https://github.com/demostenesmx/NDVI-SAVI_DCA/blob/main/Raster_Exportación.JPG)
+![alt text]()
 
 La manipulación de la información contenida en los rasaters puede realizarse, a traves, del sistema de información geografica de su preferencia. Para el presente caso de estudio se utilizó el software de acceso libre QGIS.
 
