@@ -3,7 +3,7 @@ Estimación de la estacionalidad de la cobertura vegetal mediante NDVI con el mo
 # Desarrollo de código y obtención de información para su posterior análisis.
 
 ## Descripción 📋
-El presente código esta estructurado y desarrollado para estimar la estacionaldiad de la cobertura vegetal mediante el índice de vegetación de diferencia normalizada (NDVI), aplicado al catalago Landsat 8 (L8) dentro de la plataforma Google Earth Engine para la region central del Caribe Mexicano, donde se ubica la Reserva de la Bisofera de Sian Ka´an (RBSK), Quintana Roo, México. Los cambios estacionales (fenológicos) de la cobertura vegetal en cada pixel de las imágenes apiladas, a través del tiempo, esta estimada para un periodo de 10 años (2014-2023). Información que puede ser descargada para su manejo externo. [**GEE**](https://developers.google.com/earth-engine/guides/getstarted?hl=en).
+El presente código esta estructurado y desarrollado para estimar la estacionaldiad de la cobertura vegetal mediante el índice de vegetación de diferencia normalizada (NDVI), aplicado al catalago Landsat 8 (L8) dentro de la plataforma Google Earth Engine (GEE) para la region central del Caribe Mexicano, donde se ubica la Reserva de la Bisofera de Sian Ka´an (RBSK), Quintana Roo, México. Los cambios estacionales (fenológicos) de la cobertura vegetal en cada pixel de las imágenes apiladas, a través del tiempo, esta estimada para un periodo de 10 años (2014-2023). Información que puede ser descargada para su manejo externo. [**GEE**](https://developers.google.com/earth-engine/guides/getstarted?hl=en).
 
 El repostirorio se elaboró de acuerdo a los lineamientos de la [**licencia GNU General Public License v3.0.**](https://choosealicense.com/licenses/gpl-3.0/).
 
