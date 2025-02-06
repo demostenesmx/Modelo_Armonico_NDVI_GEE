@@ -1,6 +1,6 @@
 # Modelo_Armonico_NDVI_GEE
 Estimación de umbrales y estacionalidad de la cobertura vegetal mediante NDVI con el modelo armónico de Fourier tomado y ajustado de GEE.
-# Desarrollo de código y obtención de información considerada para el estudio de la cobertura vegetal mediante NDVI, aplicado a landsat 8.
+# Desarrollo de código y obtención de información para el estudio de la cobertura vegetal mediante NDVI, aplicado a landsat 8 en duna costera.
 
 ## Descripción 📋
 El presente código esta estructurado y desarrollado para estimar los umbrales de NDVI en 2014-2023 (sección_01) y la estacionaldiad de la cobertura vegetal (sección_02) mediante el índice de vegetación de diferencia normalizada (NDVI), aplicado al catalago Landsat 8 (L8) dentro de la plataforma Google Earth Engine (GEE) para la region central del Caribe Mexicano, donde se ubica la Reserva de la Bisofera de Sian Ka´an (RBSK), Quintana Roo, México. Los cambios estacionales (fenológicos) de la cobertura vegetal en cada pixel de las imágenes apiladas, a través del tiempo, esta estimada para un periodo de 10 años (2014-2023). Información que puede ser descargada para su manejo externo. [**GEE**](https://developers.google.com/earth-engine/guides/getstarted?hl=en).
