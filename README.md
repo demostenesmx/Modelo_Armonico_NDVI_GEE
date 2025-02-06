@@ -21,7 +21,7 @@ Resultados para el periodo 2014-2024:
 
 2. ![alt text](NDVI_ZN_2023.png)
  
-3. ![alt text](ZN.png)
+3. ![alt text](NDVI_ZS_2014.png)
 
 4. ![alt text](ZS.png)
 
