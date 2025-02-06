@@ -1,21 +1,22 @@
 //Estructurado de: https://developers.google.com/earth-engine/tutorials/community/time-series-modeling
-
+//============================1. Zonas de estudio en la Reserva de la Biosfera de Sian Ka´an.======================/
 var ZN = ee.FeatureCollection ('projects/ee-mere10eloy/assets/ZN');
 var ZS = ee.FeatureCollection ('projects/ee-mere10eloy/assets/ZS');
 
-//=========================Determinando la superficie de cada zona de estudio.====================================/
+//=========================2. Determinando la superficie de cada zona de estudio.====================================/
 
 var ZNarea= ZN.geometry().area().divide(10000);
 var ZSarea= ZS.geometry().area().divide(10000);
 
-//======================================Imprimiendo superficies áreas de estudio.===============================/
+//======================================3. Imprimiendo superficies áreas de estudio.===============================/
 print ('Superficie ZN ha', ZNarea);
 print ('Superficie ZS ha', ZSarea);
-//======================================Unión de zonas de estudio.============================================================================/
+
+//======================================4. Unión de zonas de estudio.=================================================/
 
 var zonas = ee.FeatureCollection (ZN.merge(ZS));
 
-// Function to cloud mask from the pixel_qa band of Landsat 8 SR data.
+//======================================5. Función para enmascarar la nube de la banda pixel_qa de datos Landsat 8 SR.====/
 var maskL8sr = function(image) {
   // Bit 0 - Fill
   // Bit 1 - Dilated Cloud
@@ -25,11 +26,11 @@ var maskL8sr = function(image) {
   var qaMask = image.select('QA_PIXEL').bitwiseAnd(parseInt('11111', 2)).eq(0);
   var saturationMask = image.select('QA_RADSAT').eq(0);
 
-  // Apply the scaling factors to the appropriate bands.
+  //======================================6. Aplicar los factores de escala a las bandas.================================/
   var opticalBands = image.select('SR_B.').multiply(0.0000275).add(-0.2);
   var thermalBands = image.select('ST_B.*').multiply(0.00341802).add(149.0);
 
-  // Replace the original bands with the scaled ones and apply the masks.
+  //========================================7. Reemplazar las bandas originales con las escalas y aplicar la mascara.=========/
   return image.addBands(opticalBands, null, true)
     .addBands(thermalBands, null, true)
     .updateMask(qaMask)
@@ -43,31 +44,33 @@ var L8 = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2');
                            // de acuerdo al valor de la característica indicada
       //.filterBounds(zonas)
       //.map(maskL8sr)
-      
-   //print (L8);
- 
-// Function to add NDVI, time, and constant variables to Landsat 8 imagery.
+     //print (L8);
+ //====================================8. Función para agregar NDVI, tiempo y variables constantes a las imágenes L8.=====/
+
 var addVariables = function(image) {
-  // Compute time in fractional years since the epoch.
+  // Calcular el tiempo en fracciones de años desde la época.
   var date = image.date();
   var years = date.difference(ee.Date('1970-01-01'), 'year');
-  // Return the image with the added bands.
+  // Devuelve la imagen con las bandas agregadas.
   return image
-  // Add an NDVI band.
+  // Agregar banda NDVI.
   .addBands(image.normalizedDifference(['SR_B5', 'SR_B4']).rename('NDVI'))
-  // Add a time band.
+  // Agregar banda de tiempo.
   .addBands(ee.Image(years).rename('t')).float()
-  // Add a constant band.
+  // Agregar banda de constante
   .addBands(ee.Image.constant(1)).clip(zonas);
 };
-// Remove clouds, add variables and filter to the area of interest.
+
+//=========================================9. Remover nubes, agregar variables y filtrar al área de interes.==========/
+
 var filteredLandsat = L8
   .filterBounds(zonas)
   .filterDate('2014-01-01', '2023-12-31')
   .map(maskL8sr)
   .map(addVariables);
   
-  // Plot a time series of NDVI at a single location.
+  // =============================================10. Trazar una serie temporal de NDVI en la ubicación de estudio.=========/
+
 Map.centerObject(zonas, 11);
 Map.addLayer(filteredLandsat,
   {bands: 'NDVI', min: -0.77, max: 0.98, palette: ['white', 'green']},
@@ -94,6 +97,8 @@ var l8Chart_01= ui.Chart.image.series(filteredLandsat.select('NDVI'), ZN)
   });
 print(l8Chart_01);
 
+//==============================11. Generar gráfico de serie de tiempo.================================/
+
 var l8Chart_02= ui.Chart.image.series(filteredLandsat.select('NDVI'), ZS)
   .setChartType('ScatterChart')
   .setOptions({
@@ -106,17 +111,16 @@ var l8Chart_02= ui.Chart.image.series(filteredLandsat.select('NDVI'), ZS)
   });
 print(l8Chart_02);
 
-
-// List of the independent variable names.
+// Lista de los nombres de las variables independientes.
 var independents = ee.List(['constant', 't']);
-// Name of the dependent variable.
+// Nombre de la variable dependiente.
 var dependent = ee.String('NDVI');
-// Compute a linear trend. This will have two bands: 'residuals' and
-// a 2x1 band called 'coefficients' (columns are for dependent variables).
+// Calcule una tendencia lineal. Éste tendrá dos bandas: 'residuales' y
+// una banda de 2x1 llamada 'coeficientes' (las columnas son para variables dependientes).
 var trend = filteredLandsat.select(independents.add(dependent))
   .reduce(ee.Reducer.linearRegression(independents.length(), 1));
 Map.addLayer(trend, {}, 'Trend Array Image');
-// Flatten the coefficients into a 2-band image.
+// Aplana los coeficientes en una imagen de 2 bandas y agrega a la pantalla de rutinas.
 var coefficients = trend.select('coefficients')
   .arrayProject([0])
   .arrayFlatten([independents]);
@@ -125,11 +129,10 @@ var residual = trend.select('residuals')
     .arrayProject([0]); 
   Map.addLayer(residual,{}, 'residuals image');
   
-  
-  // Crear una imagen combinada con las 3 bandas
+//===============================================12.Crear una imagen combinada con las 3 bandas.=====================/
 var trendImage = coefficients.addBands(residual);
 
-// Ver la estructura de la imagen combinada
+//================================================13. Ver la estructura de la imagen combinada.======================/
 Map.addLayer (trendImage, {}, 'Tendencia');
   
   
@@ -141,7 +144,7 @@ Map.addLayer (trendImage, {}, 'Tendencia');
 //permite centrarnos en los patrones cíclicos de los datos con las tendencias 
 //a largo plazo de los datos eliminadas.
 
-// Compute a detrended series ZN.
+//============================================14. Calcule una serie sin tendencia ZN.=========================/
 var detrended = filteredLandsat.map(function(image) {
   return image.select(dependent).subtract(
     image.select(independents).multiply(coefficients).reduce('sum'))
@@ -157,7 +160,7 @@ var detrendedChart = ui.Chart.image.series(detrended, ZN, null, 30)
   });
 print(detrendedChart);
   
-// Compute a detrended series ZS.
+//===================================================15. Calcule una serie ZS sin tendencia.============================/
 var detrended = filteredLandsat.map(function(image) {
   return image.select(dependent).subtract(
     image.select(independents).multiply(coefficients).reduce('sum'))
@@ -173,11 +176,12 @@ var detrendedChart = ui.Chart.image.series(detrended, ZS, null, 30)
   });
 print(detrendedChart); 
   
-//==========Estimate seasonality with a harmonic model
+//===========================16. Estimar la estacionalidad con un modelo armónico de Fourier.=============================/
+
   
-//==========Use these independent variables in the harmonic regression.
+//=========================Utilice las variables independientes en la regresión armónica.===========================/
 var harmonicIndependents = ee.List(['constant', 't', 'cos', 'sin']);
-//===========Add harmonic terms as new image bands.
+//===========================Agregue términos armónicos como nuevas bandas de imágenes.==============================/
 var harmonicLandsat = filteredLandsat.map(function(image) {
   var timeRadians = image.select('t').multiply(2 * Math.PI);
     return image
@@ -185,21 +189,22 @@ var harmonicLandsat = filteredLandsat.map(function(image) {
       .addBands(timeRadians.sin().rename('sin'));
   });
 
-//Ajuste el modelo con una tendencia lineal, utilizando el reductor linearRegression().
+//=======================================17. Ajuste el modelo con una tendencia lineal, utilizando el reductor linearRegression======/
   var harmonicTrend = harmonicLandsat
   .select(harmonicIndependents.add(dependent))
-  // The output of this reducer is a 4x1 array image.
+  //====================================la salida de este reductor es una imagen de matriz 4x1.==================================/
   .reduce(ee.Reducer.linearRegression({
    numX: harmonicIndependents.length(),
    numY: 1
   }));
   
-//  Conecte los coeficientes en la ecuación 2 para obtener una serie de tiempo de valores ajustados:
-  // Turn the array image into a multi-band image of coefficients.
+//=============================================18. Conecte los coeficientes en la ecuación 2 para obtener una serie de tiempo de valores ajustados:===/
+//=====================================Convierta la imagen de matriz en una imagen de coeficientes multibanda.==========================================/
 var harmonicTrendCoefficients = harmonicTrend.select('coefficients')
   .arrayProject([0])
   .arrayFlatten([harmonicIndependents]);
-// Compute fitted values.
+//=========================================Calcule los valores ajustados.======================================================/
+
 var fittedHarmonic = harmonicLandsat.map(function(image) {
   return image.addBands(
     image.select(harmonicIndependents)
@@ -207,7 +212,8 @@ var fittedHarmonic = harmonicLandsat.map(function(image) {
       .reduce('sum')
       .rename('fitted'));
 });
-// Plot the fitted model and the original data at the ROI (ZN).
+//======================================================19. Gráfico del modelo ajustado y los datos originales en el ROI (ZN).========/
+
 print(ui.Chart.image.series(fittedHarmonic.select(['fitted', 'NDVI']), ZN,
       ee.Reducer.median(), 30) //.mean()
   .setSeriesNames(['NDVI', 'fitted'])
@@ -218,7 +224,7 @@ print(ui.Chart.image.series(fittedHarmonic.select(['fitted', 'NDVI']), ZN,
   })
 );
 
-// Plot the fitted model and the original data at the ROI (ZS).
+//=========================================20. Gráfico del modelo ajustado y los datos originales en el ROI (ZS).========================/
 print(ui.Chart.image.series(fittedHarmonic.select(['fitted', 'NDVI']), ZS,
       ee.Reducer.median(), 30) //.mean()
   .setSeriesNames(['NDVI', 'fitted'])
@@ -235,24 +241,24 @@ print(ui.Chart.image.series(fittedHarmonic.select(['fitted', 'NDVI']), ZS,
 //se incorpora esta información en cada píxel. Se usa el inspector para mirar los 
 //píxeles y se observa su fase y amplitud.
 
-// Compute phase and amplitude.
+//==========================================================21. Calcular fase y amplitud.====================================================/
 var phase = harmonicTrendCoefficients.select('sin')
   .atan2(harmonicTrendCoefficients.select('cos'))
-  // Scale to [0, 1] from radians.
+  //================================================22. Escala a [0, 1] desde radianes.======================================/
   .unitScale(-Math.PI, Math.PI);
 var amplitude = harmonicTrendCoefficients.select('sin')
   .hypot(harmonicTrendCoefficients.select('cos'))
-  // Add a scale factor for visualization.
+  //==============================================23. Agregue un factor de escala para la visualización.==========================/
   .multiply(5);
-  // Compute the mean NDVI.
+  //===============================================24. Calcule la mediana de NDVI.===================================================/
 var medianNdvi = filteredLandsat.select('NDVI').median(); // mean
-// Use the HSV to RGB transformation to display phase and amplitude.
+// ===================================25. Utilizar la transformación HSV a RGB para mostrar la fase y la amplitud.=================/
 var seasonality  = ee.Image.cat([phase, amplitude, medianNdvi]).hsvToRgb();
 Map.addLayer(seasonality , {}, 'Seasonality: Phase (hue), Amplitude (sat), NDVI (val)');
 
-//==========================Parametros de visualizacion.
+//==============================================26. Parametros de visualizacion.=================================================/
 
-// Map the function over one year of data.
+//================================================Mapee la función a lo largo de un año de datos.=================================/
 var L8_01 = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')
                      .filterDate('2014-01-01', '2023-12-31')
                      .map(maskL8sr).filterBounds(zonas);
@@ -265,12 +271,12 @@ var visualization = {
   max: 0.3,
 };
 
-//====================Agregar capas al mapa.
+//=====================================================27. Agregar capas al mapa.=====================================================/
 
 Map.addLayer (L8_m.clip(zonas), visualization, 'True Color (432)');
 
-//Exportar a drive
-
+//======================================================28. Exportar a drive.=======================================================/
+//===============================01.
 Export.image.toDrive(
 {image: medianNdvi, // 'B3','B4','B8' .select('SR_B4_median', 'SR_B3_median', 'SR_B2_median')
 description: 'NDVI_Mosaico', 
@@ -281,6 +287,7 @@ crs: 'EPSG:32616',
 maxPixels: 1e13
 });
 
+//================================02
 Export.image.toDrive(
 {image: coefficients, 
 description: 'Arreglo_Tendencia', 
@@ -291,7 +298,7 @@ crs: 'EPSG:32616',
 maxPixels: 1e13
 });
 
-//
+//===================================03
 Export.image.toDrive(
 {image: trendImage, 
 description: 'Tendencia', 
@@ -302,7 +309,7 @@ crs: 'EPSG:32616',
 maxPixels: 1e13
 });
 
-//
+//======================================04
 Export.image.toDrive(
 {image: seasonality, 
 description: 'Estacionalidad', 
