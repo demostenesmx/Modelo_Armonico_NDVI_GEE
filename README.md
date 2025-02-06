@@ -13,7 +13,7 @@ El repostirorio se elaboró de acuerdo a los lineamientos de la [**licencia GNU 
 
 Estimaciones.
 
-Con la ejecución de este código en cada sección (01 y 02), obtendrá los umbrales, estadisticos y la estacionalidad fenológica a través del NDVI, mediante modelo ármonico para el periodo de 10 años (2014-2023), para la zona norte y sur de la RBSK. Ademas podrá exportar capas raster anuales y clasificada con los umbrales propuestos por zona de estudio.
+Con la ejecución de este código en cada sección (01 y 02), obtendrá los umbrales, estadisticos y la estacionalidad fenológica a través del NDVI, mediante modelo ármonico para el periodo de 10 años (2014-2023), para la zona norte y sur de la RBSK. Además podrá exportar capas raster anuales y clasificada con los umbrales propuestos por zona de estudio.
 
 Resultados para el periodo 2014-2023:
 
