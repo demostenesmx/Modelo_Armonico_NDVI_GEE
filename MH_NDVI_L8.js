@@ -74,18 +74,13 @@ Map.addLayer(filteredLandsat,
   'NDVI Mosaic');
 Map.addLayer(zonas, {color: 'yellow'}, 'ROI');
 
-//Puede hacer clic en el botón "exportar" al lado del gráfico para ver un 
+//Se puede hacer clic en el botón "exportar" al lado del gráfico para ver un 
 //gráfico interactivo. Desplazar sobre algunos de los puntos de datos y 
 //observe las relaciones entre los datos. Una línea que conecta dos puntos 
-//significa que son puntos de datos secuenciales (obsérvese que hay 
-//relativamente pocos puntos secuenciales).
-//También podemos ver que hay saltos relativamente grandes en los datos, 
-//con un ascenso en algún momento entre marzo y finales de abril, y un 
-//descenso a finales de agosto. Cada año es ligeramente diferente, pero 
-//podemos suponer que esto se debe a las lluvias estacionales en la primavera y
-//a las hojas que mueren en el otoño. Finalmente, la tendencia general es a la 
-//baja, aunque el dato de febrero de 2021 podría tener una influencia 
-//significativa en la tendencia.
+//significa que son puntos de datos secuenciales.
+//Se puede observar que hay saltos entre los datos entre el periodo evaluado 
+//con ascensos y descensos entre los meses. Cada año es ligeramente diferente, derivado de las temporadas 
+//existentes en el área de estudio (secas, lluvias y nortes).
 
 var l8Chart_01= ui.Chart.image.series(filteredLandsat.select('NDVI'), ZN)
   .setChartType('ScatterChart')
