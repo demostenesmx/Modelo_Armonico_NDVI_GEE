@@ -17,7 +17,7 @@ Con la ejecución de este código se obtendrán series de tiempo con valores men
 
 Resultados de la distribución de valores por mes por año para el periodo 2011-2020:
 
-1. ![alt text]()
+1. ![alt text](ZN.png)
 
 2. ![alt text]()
 
