@@ -3,7 +3,7 @@ Estimación de umbrales y estacionalidad de la cobertura vegetal mediante NDVI c
 # Desarrollo de código y obtención de información para su posterior análisis.
 
 ## Descripción 📋
-El presente código esta estructurado y desarrollado para estimar los umbrales de NDVI en 2014 y 2023 (sección_01) y la estacionaldiad de la cobertura vegetal (sección_02) mediante el índice de vegetación de diferencia normalizada (NDVI), aplicado al catalago Landsat 8 (L8) dentro de la plataforma Google Earth Engine (GEE) para la region central del Caribe Mexicano, donde se ubica la Reserva de la Bisofera de Sian Ka´an (RBSK), Quintana Roo, México. Los cambios estacionales (fenológicos) de la cobertura vegetal en cada pixel de las imágenes apiladas, a través del tiempo, esta estimada para un periodo de 10 años (2014-2023). Información que puede ser descargada para su manejo externo. [**GEE**](https://developers.google.com/earth-engine/guides/getstarted?hl=en).
+El presente código esta estructurado y desarrollado para estimar los umbrales de NDVI en 2014-2023 (sección_01) y la estacionaldiad de la cobertura vegetal (sección_02) mediante el índice de vegetación de diferencia normalizada (NDVI), aplicado al catalago Landsat 8 (L8) dentro de la plataforma Google Earth Engine (GEE) para la region central del Caribe Mexicano, donde se ubica la Reserva de la Bisofera de Sian Ka´an (RBSK), Quintana Roo, México. Los cambios estacionales (fenológicos) de la cobertura vegetal en cada pixel de las imágenes apiladas, a través del tiempo, esta estimada para un periodo de 10 años (2014-2023). Información que puede ser descargada para su manejo externo. [**GEE**](https://developers.google.com/earth-engine/guides/getstarted?hl=en).
 
 El repostirorio se elaboró de acuerdo a los lineamientos de la [**licencia GNU General Public License v3.0.**](https://choosealicense.com/licenses/gpl-3.0/).
 
@@ -13,9 +13,9 @@ El repostirorio se elaboró de acuerdo a los lineamientos de la [**licencia GNU 
 
 Estimaciones.
 
-Con la ejecución de este código en cada sección (01 y 02), obtendrá los umbrales y estadisticos para el año 2014 y 2023, ádemas de la estacionalidad fenológica a través del NDVI, mediante modelo ármonico durante el periodo de 10 años (2014-2023), para la zona norte y sur de la RBSK.
+Con la ejecución de este código en cada sección (01 y 02), obtendrá los umbrales, estadisticos y la estacionalidad fenológica a través del NDVI, mediante modelo ármonico para el periodo de 10 años (2014-2023), para la zona norte y sur de la RBSK.
 
-Resultados para el periodo 2014-2024:
+Resultados para el periodo 2014-2023:
 
 1. ![alt text](NDVI_ZN_2014.png)
 
