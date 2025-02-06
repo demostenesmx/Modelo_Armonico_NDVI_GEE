@@ -13,7 +13,7 @@ El repostirorio se elaboró de acuerdo a los lineamientos de la [**licencia GNU 
 
 Estimaciones.
 
-Con la ejecución de este código en cada sección (01 y 02), obtendrá los umbrales y estadisticos para el año 2014 y 2023, ádemas de la estacionalidad fenológica a través del NDVI, mediante modelo ármonica durante el periodo de 10 años (2014-2023), para la zona norte y sur de la RBSK.
+Con la ejecución de este código en cada sección (01 y 02), obtendrá los umbrales y estadisticos para el año 2014 y 2023, ádemas de la estacionalidad fenológica a través del NDVI, mediante modelo ármonico durante el periodo de 10 años (2014-2023), para la zona norte y sur de la RBSK.
 
 Resultados para el periodo 2014-2024:
 
