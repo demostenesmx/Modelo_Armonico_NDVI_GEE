@@ -1,5 +1,5 @@
 # Modelo_Armonico_NDVI_GEE
-Estimación de la estacionalidad de la cobertura vegetal mediante NDVI con el modelo armónico de Fourier tomado y ajustado de GEE.
+Estimación de umbrales y estacionalidad de la cobertura vegetal mediante NDVI con el modelo armónico de Fourier tomado y ajustado de GEE.
 # Desarrollo de código y obtención de información para su posterior análisis.
 
 ## Descripción 📋
