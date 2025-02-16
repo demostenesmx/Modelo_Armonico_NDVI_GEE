@@ -43,15 +43,9 @@ var maskL8sr = function(image) {
     .updateMask(qaMask)
     .updateMask(saturationMask);
 };
-
+//========================================Agregando colección a trabajar===============================================/
 var L8 = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2');
-   // .filterDate('2014-01-01', '2023-12-31') //Estableciendo fechas de estudio
-    //.filterMetadata ('CLOUD_COVER', 'Less_Than', 20)
-      //.sort('CLOUD_COVER') //ordena la colección de imágenes de forma ascendente, 
-                           // de acuerdo al valor de la característica indicada
-      //.filterBounds(zonas)
-      //.map(maskL8sr)
-     //print (L8);
+  
  //====================================8. Función para agregar NDVI, tiempo y variables constantes a las imágenes L8.=====/
 
 var addVariables = function(image) {
