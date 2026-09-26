@@ -320,3 +320,8 @@ region:zonas,
 crs: 'EPSG:32616',
 maxPixels: 1e13
 });
+
+
+Cita: Gayosso-Soto, E., Cohuo, S., Villegas-Sánchez, C.A., Jorge Armando López-Chan & Leopoldo Querubín Cutz-Pool 
+   Composition, structure, and spatial distribution of vegetation in the coastal dunes of the central Mexican Caribbean. 
+      J Coast Conserv 30, 39 (2026). https://doi.org/10.1007/s11852-026-01209-2
