@@ -28,3 +28,7 @@ Visualización de la Reserva de la Bisofera de Sian Ka´an (RBSK), mediante NDVI
 La manipulación de la información contenida en los rasaters puede realizarse, a traves, del sistema de información geografica de su preferencia. Para el presente caso de estudio se utilizó el software de acceso libre QGIS.
 
 ![alt text](https://github.com/demostenesmx/NDVI-SAVI_DCA/blob/main/QGis.JPG)
+
+Cita: Gayosso-Soto, E., Cohuo, S., Villegas-Sánchez, C.A., Jorge Armando López-Chan & Leopoldo Querubín Cutz-Pool 
+   Composition, structure, and spatial distribution of vegetation in the coastal dunes of the central Mexican Caribbean. 
+      J Coast Conserv 30, 39 (2026). https://doi.org/10.1007/s11852-026-01209-2
